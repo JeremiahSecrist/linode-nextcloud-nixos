@@ -1,6 +1,6 @@
 {
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixos-generators = {
             url = "github:nix-community/nixos-generators";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -19,8 +19,6 @@
         mkNixos = system: systemModules: config: nixpkgs.lib.nixosSystem {
             inherit system specialArgs;
             modules = sharedModules ++ systemModules ++ [
-                { system.stateVersion = "23.05";
-                }
                 config
             ];
         };

@@ -13,11 +13,11 @@
     services.openssh = {
         enable = true;
         openFirewall = true;
-        # settings = {
-            # PasswordAuthentication = false;
-            # PermitRootLogin = "no";
-            # KbdInteractiveAuthentication = false;
-        # };
+        settings = {
+            PasswordAuthentication = false;
+            PermitRootLogin = "no";
+            KbdInteractiveAuthentication = false;
+        };
         startWhenNeeded = true;
         # kexAlgorithms = [ "curve25519-sha256@libssh.org" ];
     };
@@ -35,6 +35,7 @@
             extraGroups = [ "wheel" ];
         };
     };
+    services.tailscale.enable = true;
     services.nextcloud = {
         enable = true;
         hostName = "nextcloud.arouzing.xyz";
@@ -47,8 +48,8 @@
             post_max_size = "16G";
         };
         config = {
-            # adminpassFile = (pkgs.writeText "adminpass" "test123");
-            extraTrustedDomains = [ "nixos" ];
+            adminpassFile = (pkgs.writeText "adminpass" "test123");
         };
     };
+    system.stateVersion = "23.05";
 }
