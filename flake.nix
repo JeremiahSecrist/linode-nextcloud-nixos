@@ -26,7 +26,9 @@
         };
     in {
         nixosConfigurations = {
-            test = mkNixos defaultSystem [nixos-generators.nixosModules.linode] ./configuration.nix;
+            test = mkNixos defaultSystem [
+                nixos-generators.nixosModules.linode
+                ] ./configuration.nix;
         };
         packages.x86_64-linux = {
             linode = self.nixosConfigurations.test.config.formats.linode;
