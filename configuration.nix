@@ -38,7 +38,7 @@
     services.tailscale.enable = true;
     services.nextcloud = {
         enable = true;
-        hostName = "nextcloud.arouzing.xyz";
+        # hostName = "nextcloud.arouzing.xyz";
         package = pkgs.nextcloud27;
         enableBrokenCiphersForSSE = false;
         https = true;
