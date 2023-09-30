@@ -78,4 +78,5 @@
     randomizedDelaySec = "60min";
     flake = "github:jeremiahSecrist/linode-nextcloud-nixos";
   };
+  networking.hostName = "nextcloud.arouzing.xyz";
 }

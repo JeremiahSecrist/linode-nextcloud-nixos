@@ -31,7 +31,7 @@
         };
     in {
       nixosConfigurations = {
-        test =
+        "nextcloud.arouzing.xyz" =
           mkNixos defaultSystem [
             nixos-generators.nixosModules.linode
           ]
