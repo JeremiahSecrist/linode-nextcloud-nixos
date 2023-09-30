@@ -71,4 +71,11 @@
   };
   networking.firewall.allowedTCPPorts = [22 80 443];
   system.stateVersion = "23.05";
+  system.autoUpgrade = {
+    dates = "daily";
+    enable = true;
+    allowReboot = true;
+    randomizedDelaySec = "60min";
+    flake = "github:jeremiahSecrist/linode-nextcloud-nixos";
+  };
 }
