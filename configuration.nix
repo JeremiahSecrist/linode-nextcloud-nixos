@@ -6,6 +6,9 @@
 }: {
   time.timeZone = "America/New_York";
   # security.acme.acceptTerms = true;
+  environment.systemPackages = with pkgs; [
+    git
+  ];
   age.secrets.secret1 = {
     file = ./secrets/nextcloudPassword;
     # path = "/var/lib/secrets/nextcloudpass";
