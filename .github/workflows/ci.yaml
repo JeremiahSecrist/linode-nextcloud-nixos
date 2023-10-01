@@ -10,5 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: "system-features = nixos-test benchmark big-parallel kvm"
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check
