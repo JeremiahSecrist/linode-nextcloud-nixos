@@ -15,6 +15,10 @@
       # supportedSystems = ["x86_64-linux" "x86-linux"];
       defaultSystem = "x86_64-linux";
       specialArgs = {inherit self inputs;};
+      pkgs = import nixpkgs {
+        system = defaultSystem;
+      };
+      # lib = nixpkgs.lib;
       # forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
       sharedModules = [
         agenix.nixosModules.default
@@ -37,6 +41,7 @@
           ]
           ./configuration.nix;
       };
+      checks.${defaultSystem}.default = pkgs.nixosTest (import ./tests/main.nix {inherit self inputs pkgs;});
       packages.x86_64-linux = {
         linode = nixos-generators.nixosGenerate {
           system = defaultSystem;
