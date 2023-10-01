@@ -6,6 +6,10 @@
 }: {
   time.timeZone = "America/New_York";
   # security.acme.acceptTerms = true;
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
   environment.systemPackages = with pkgs; [
     git
   ];
