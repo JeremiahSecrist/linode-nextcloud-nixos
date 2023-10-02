@@ -14,6 +14,3 @@ jobs:
             system-features = nixos-test benchmark big-parallel kvm uid-range
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check
-      - if: ${{ failure() }}
-        run: |
-          echo "::error :: Check failed, please run test locally for logs."
