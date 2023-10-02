@@ -1,6 +1,7 @@
 name: CI
 on:
-  pull_request_target:
+  pull_request:
+    types: [opened, edited]
 
 jobs:
   tests:
@@ -13,3 +14,6 @@ jobs:
             system-features = nixos-test benchmark big-parallel kvm uid-range
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check
+      - if: ${{ failure() }}
+      run: |
+        echo "::error :: Check failed, please run test locally for logs."
