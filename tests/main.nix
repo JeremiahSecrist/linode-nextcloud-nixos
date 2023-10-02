@@ -10,6 +10,7 @@
         inputs.nixos-generators.nixosModules.linode
         ../configuration.nix
         {
+            services.tailscale.enable = lib.mkForce false;
             services.nextcloud.config =  {
                 adminpassFile =  lib.mkForce "${pkgs.writeText "aaa" "aaa"}";
             };
