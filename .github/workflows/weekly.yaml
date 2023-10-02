@@ -15,12 +15,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v20
         with:
-          token: ${{ github.token }} # This is clearer as to the fact we are using builtin token
+          token: ${{ steps.generate-token.outputs.token }} # This is clearer as to the fact we are using builtin token
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: |                  # Labels to be set on the PR
             dependencies
