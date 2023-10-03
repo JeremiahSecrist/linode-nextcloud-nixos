@@ -5,6 +5,8 @@
   ...
 }: {
   name = "nextcloud";
+  hostPkgs = pkgs;
+  imports = [{
   nodes.machine = {
     lib,
     pkgs,
@@ -13,8 +15,8 @@
   }: {
     imports = [
       inputs.agenix.nixosModules.default
-      inputs.nixos-generators.nixosModules.linode
       self.nixosModules.nextcloud
+      inputs.nixos-generators.nixosModules.linode
       {
         services.tailscale.enable = lib.mkForce false;
         services.nextcloud.config = {
@@ -23,7 +25,8 @@
       }
     ];
   };
-
+}
+  ];
   testScript = {nodes, ...}: ''
     start_all()
     machine.wait_for_unit("multi-user.target")

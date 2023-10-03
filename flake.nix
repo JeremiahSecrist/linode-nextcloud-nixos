@@ -15,6 +15,7 @@
       # supportedSystems = ["x86_64-linux" "x86-linux"];
       defaultSystem = "x86_64-linux";
       specialArgs = {inherit self inputs;};
+      nixos-lib = import (nixpkgs + "/nixos/lib") { };
       pkgs = import nixpkgs {
         system = defaultSystem;
       };
@@ -44,7 +45,7 @@
       nixosModules = {
         nextcloud = ./hosts/nextcloud;
       };
-      checks.${defaultSystem}.default = pkgs.nixosTest (import ./tests/main.nix {inherit self inputs pkgs;});
+      checks.${defaultSystem}.default = nixos-lib.runTest (import ./tests/main.nix {inherit self inputs pkgs;});
       packages.x86_64-linux = {
         linode = nixos-generators.nixosGenerate {
           system = defaultSystem;
