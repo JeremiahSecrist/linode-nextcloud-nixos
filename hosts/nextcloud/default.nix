@@ -8,7 +8,7 @@
   # security.acme.acceptTerms = true;
   nix = {
     package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = ["nix-command" "flakes"];
   };
   environment.systemPackages = with pkgs; [
     git
@@ -45,7 +45,7 @@
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
-    locations = { "/".proxyPass = "https://${config.services.nextcloud.hostName}"; };
+    locations = {"/".proxyPass = "https://${config.services.nextcloud.hostName}";};
   };
   security.acme = {
     acceptTerms = true;
