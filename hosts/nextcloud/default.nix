@@ -14,7 +14,7 @@
     git
   ];
   age.secrets.secret1 = {
-    file = ./secrets/nextcloudPassword;
+    file = ../../secrets/nextcloudPassword;
     # path = "/var/lib/secrets/nextcloudpass";
     mode = "770";
     owner = "nextcloud";
