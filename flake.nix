@@ -39,7 +39,10 @@
           mkNixos defaultSystem [
             nixos-generators.nixosModules.linode
           ]
-          ./configuration.nix;
+          self.nixosModules.nextcloud;
+      };
+      nixosModules = {
+        nextcloud = ./hosts/nextcloud;
       };
       checks.${defaultSystem}.default = pkgs.nixosTest (import ./tests/main.nix {inherit self inputs pkgs;});
       packages.x86_64-linux = {
@@ -48,7 +51,7 @@
           modules = [
             # you can include your own nixos configuration here, i.e.
             agenix.nixosModules.default
-            ./configuration.nix
+            self.nixosModules.nextcloud
           ];
           format = "linode";
         };

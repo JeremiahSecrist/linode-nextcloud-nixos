@@ -8,7 +8,7 @@
     imports = [
         inputs.agenix.nixosModules.default
         inputs.nixos-generators.nixosModules.linode
-        ../configuration.nix
+        self.nixosModules.nextcloud
         {
             services.tailscale.enable = lib.mkForce false;
             services.nextcloud.config =  {
