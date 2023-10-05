@@ -81,9 +81,9 @@
   system.autoUpgrade = {
     dates = "daily";
     enable = true;
-    allowReboot = true;
+    allowReboot = false;
     randomizedDelaySec = "60min";
-    flake = "github:jeremiahSecrist/linode-nextcloud-nixos";
+    flake = "github:JeremiahSecrist/linode-nextcloud-nixos";
   };
   networking.hostName = "nextcloud";
 }
