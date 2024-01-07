@@ -12,6 +12,7 @@
   };
   environment.systemPackages = with pkgs; [
     git
+    docker-compose
   ];
   # age.secrets.secret1 = {
   #   file = ../../secrets/nextcloudPassword;
@@ -78,7 +79,7 @@
   #     adminpassFile = config.age.secrets.secret1.path;
   #   };
   # };
-  networking.firewall.allowedTCPPorts = [22 80 443];
+  networking.firewall.allowedTCPPorts = [22 80 443 27017];
   system.stateVersion = "23.11";
   system.autoUpgrade = {
     dates = "daily";
