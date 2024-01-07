@@ -79,7 +79,7 @@
   #     adminpassFile = config.age.secrets.secret1.path;
   #   };
   # };
-  networking.firewall.allowedTCPPorts = [22 80 443 27017];
+  networking.firewall.allowedTCPPorts = [22 80 443 3000];
   system.stateVersion = "23.11";
   system.autoUpgrade = {
     dates = "daily";
