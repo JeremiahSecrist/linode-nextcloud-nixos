@@ -60,7 +60,16 @@
       ];
       extraGroups = ["wheel" "docker"];
     };
+    cye = {
+      # ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICeRKXdKXgdgn7AGR/wx0+0M0G4WWHIjHdPPIRYLuroS cye
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICeRKXdKXgdgn7AGR/wx0+0M0G4WWHIjHdPPIRYLuroS"
+      ];
+      extraGroups = ["wheel" "docker"];
+    };
   };
+
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.liveRestore = true;
