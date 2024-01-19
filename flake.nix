@@ -38,7 +38,8 @@
       nixosConfigurations = {
         nextcloud =
           mkNixos defaultSystem [
-            nixos-generators.nixosModules.linode
+            # nixos-generators.nixosModules.linode
+            ./hosts/nextcloud/hardware.nix
           ]
           self.nixosModules.nextcloud;
       };
