@@ -5,7 +5,7 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot = {
+    boot = {
     # Add kernel modules detected by nixos-generate-config:
     initrd.availableKernelModules = [
       "virtio_pci"
@@ -38,13 +38,15 @@
 
         # Link /boot/grub2 to /boot/grub:
         extraInstallCommands = ''
-          ${pkgs.coreutils-full}/bin/ln -fs /boot/grub /boot/grub2
+          ${pkgs.coreutils}/bin/ln -fs /boot/grub /boot/grub2
         '';
 
         # Remove GRUB splash image:
         splashImage = null;
       };
     };
+  };
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/f222513b-ded1-49fa-b591-20ce86a2fe7f";
       fsType = "ext4";
