@@ -7,14 +7,6 @@
 let
   defaultGroups = ["wheel" "docker"];
 in {
-    boot.loader.grub.extraInstallCommands = ''
-    ESP_MIRROR=$(${pkgs.coreutils}/bin/mktemp -d)
-    ${pkgs.coreutils}/bin/cp -r /boot/efi/EFI $ESP_MIRROR
-    for i in /boot/efis/*; do
-     ${pkgs.coreutils}/bin/cp -r $ESP_MIRROR/EFI $i
-    done
-    ${pkgs.coreutils}/bin/rm -rf $ESP_MIRROR
-  '';
   time.timeZone = "America/New_York";
   # security.acme.acceptTerms = true;
   nix = {
