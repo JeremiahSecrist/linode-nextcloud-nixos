@@ -16,6 +16,7 @@ in {
   environment.systemPackages = with pkgs; [
     git
     docker-compose
+    micro
   ];
   programs.bash.shellAliases = {
     rbsw = "sudo nixos-rebuild switch --flake github:JeremiahSecrist/linode-nextcloud-nixos";
