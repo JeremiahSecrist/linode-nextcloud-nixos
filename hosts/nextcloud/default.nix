@@ -7,6 +7,7 @@
 let
   defaultGroups = ["wheel" "docker"];
 in {
+  boot.loader.grub.device = "/dev/sda";
   time.timeZone = "America/New_York";
   # security.acme.acceptTerms = true;
   nix = {
@@ -28,7 +29,7 @@ in {
   #   owner = "nextcloud";
   # };
   security.pam = {
-    enableSSHAgentAuth = true;
+    sshAgentAuth.enable = true;
     services.sudo.sshAgentAuth = true;
   };
   services.openssh = {
