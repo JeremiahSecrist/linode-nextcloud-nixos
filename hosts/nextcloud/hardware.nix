@@ -5,11 +5,46 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_scsi" "ahci" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
-  boot.loader.grub.devices = ["/dev/sda"];
+  boot = {
+    # Add kernel modules detected by nixos-generate-config:
+    initrd.availableKernelModules = [
+      "virtio_pci"
+      "virtio_scsi"
+      "ahci"
+      "sd_mod"
+    ];
+
+    growPartition = true;
+
+    # Set up LISH serial connection:
+    kernelParams = ["console=ttyS0,19200n8"];
+
+    loader = {
+      # Increase timeout to allow LISH connection:
+      timeout = lib.mkForce 10;
+
+      grub = {
+        enable = true;
+        forceInstall = true;
+        device = "nodev";
+        fsIdentifier = "label";
+
+        # Allow serial connection for GRUB to be able to use LISH:
+        extraConfig = ''
+          serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1;
+          terminal_input serial;
+          terminal_output serial
+        '';
+
+        # Link /boot/grub2 to /boot/grub:
+        extraInstallCommands = ''
+          ${pkgs.coreutils-full}/bin/ln -fs /boot/grub /boot/grub2
+        '';
+
+        # Remove GRUB splash image:
+        splashImage = null;
+      };
+    };
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/f222513b-ded1-49fa-b591-20ce86a2fe7f";
       fsType = "ext4";
