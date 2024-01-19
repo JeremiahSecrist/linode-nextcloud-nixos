@@ -7,7 +7,6 @@
 let
   defaultGroups = ["wheel" "docker"];
 in {
-  boot.loader.grub.device = lib.mkForce "/dev/sda";
   time.timeZone = "America/New_York";
   # security.acme.acceptTerms = true;
   nix = {
