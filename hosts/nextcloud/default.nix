@@ -17,9 +17,10 @@ in {
     git
     docker-compose
   ];
-  programs.bash.interactiveShellInit = ''
-    alias rbsw="sudo nixos-rebuild switch --flake github:JeremiahSecrist/linode-nextcloud-nixos"
-  '';
+  programs.bash.shellAliases = {
+    rbsw = "sudo nixos-rebuild switch --flake github:JeremiahSecrist/linode-nextcloud-nixos";
+  };
+
   # age.secrets.secret1 = {
   #   file = ../../secrets/nextcloudPassword;
   #   # path = "/var/lib/secrets/nextcloudpass";
