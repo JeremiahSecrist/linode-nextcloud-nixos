@@ -17,7 +17,7 @@ in {
     git
     docker-compose
   ];
-  environment.interactiveShellInit = ''
+  programs.bash.interactiveShellInit = ''
     alias rbsw="sudo nixos-rebuild switch --flake github:JeremiahSecrist/linode-nextcloud-nixos"
   '';
   # age.secrets.secret1 = {
